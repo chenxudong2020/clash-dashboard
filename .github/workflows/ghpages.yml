@@ -1,6 +1,14 @@
-name: Deploy
+name: deploy
 
-on: [push]
+on:
+  schedule:
+    - cron: '0 18 * * *'
+  workflow_dispatch:
+    inputs:
+      clean_cache:
+        description: 'Clear caches'
+        required: false
+        type: boolean
 
 jobs:
   build:
@@ -27,4 +35,4 @@ jobs:
         build_dir: dist
         fqdn: clash.ayanamist.com
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.DUBUX }}
